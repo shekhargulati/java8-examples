@@ -18,7 +18,7 @@ import static org.junit.Assert.assertThat;
  */
 public class FizzBuzzTest {
 
-    private final FizzBuzz_Java7 program = new FizzBuzz_Java7();
+    private final FizzBuzz_Java8 program = new FizzBuzz_Java8();
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
