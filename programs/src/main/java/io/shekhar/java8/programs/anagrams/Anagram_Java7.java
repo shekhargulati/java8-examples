@@ -6,6 +6,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
+/**
+ * Two or more words can be composed of the same characters, but in a different order.
+ * Using the word list at http://www.puzzlers.org/pub/wordlists/unixdict.txt,
+ * find the sets of words that share the same characters that contain the most words in them.
+ */
 public class Anagram_Java7 {
 
     public Map<String, List<String>> anagramGroups(String path) throws Exception {
