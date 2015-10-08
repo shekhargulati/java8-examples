@@ -61,16 +61,15 @@ public class Task {
 
     @Override
     public boolean equals(Object o) {
-        return Optional.ofNullable(o)
-                .filter(that -> that instanceof Task)
-                .map(that -> (Task) that)
-                .filter(that -> Objects.equals(this.title, that.title))
-                .filter(that -> Objects.equals(this.type, that.type))
-                .isPresent();
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return Objects.equals(title, task.title) &&
+                Objects.equals(type, task.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, type, createdOn);
+        return Objects.hash(title, type);
     }
 }

@@ -30,7 +30,7 @@ public class DataUtils {
 
     public static Stream<String> filePathToStream(String path) {
         try {
-            return Files.lines(Paths.get(path));
+            return Files.lines(Paths.get("training", path));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
