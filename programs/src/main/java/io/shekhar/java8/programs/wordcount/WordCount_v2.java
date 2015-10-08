@@ -1,4 +1,4 @@
-package io.shekhar.trainings.java8.examples;
+package io.shekhar.java8.programs.wordcount;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,16 +10,16 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.*;
 
 /**
  * Created by shekhargulati on 19/09/15.
  */
-public class WordCountExample {
+public class WordCount_v2 {
 
     public static void main(String[] args) throws IOException {
-        Path path = Paths.get("src/main/resources/book.txt");
+        Path path = Paths.get("programs", "src", "main", "resources", "book.txt");
+        System.out.println(path.toAbsolutePath());
         Map<String, Long> wordCount = Files.lines(path)
                 .parallel()
                 .flatMap(line -> Arrays.stream(line.trim().split("\\s")))
