@@ -1,5 +1,7 @@
 package io.shekhar.trainings.java8.lambdas.examples;
 
+import java.util.Comparator;
+
 /**
  * Created by shekhargulati on 17/09/15.
  *
@@ -9,7 +11,7 @@ public class Example2_Lambda {
 
     public static void main(String[] args) {
 
-        //Comparator comparator = (first, second) -> first.length() - second.length();
+//        Comparator comparator = (first, second) -> first.length() - second.length();
 
 
     }
