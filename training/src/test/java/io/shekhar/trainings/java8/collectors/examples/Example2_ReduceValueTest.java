@@ -1,8 +1,11 @@
 package io.shekhar.trainings.java8.collectors.examples;
 
 import io.shekhar.trainings.java8.domain.Task;
+import io.shekhar.trainings.java8.domain.TaskType;
 import org.junit.Test;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +23,7 @@ import static org.junit.Assert.assertThat;
  * Created by shekhargulati on 20/09/15.
  */
 public class Example2_ReduceValueTest {
+    private Task duplicate = new Task("Read Java 8 in action", TaskType.READING, LocalDate.of(2015, Month.SEPTEMBER, 20)).addTag("java").addTag("java8").addTag("books");
 
     private Example2_ReduceValue example = new Example2_ReduceValue();
 
@@ -39,7 +43,7 @@ public class Example2_ReduceValueTest {
     @Test
     public void shouldCollectUniqueTitles() throws Exception {
         List<Task> tasks = getTasks();
-        Set<String> titles = example.uniqueTitle(tasks);
+        Set<String> titles = example.uniqueTitles(tasks);
         assertThat(titles, hasSize(5));
     }
 
@@ -48,6 +52,14 @@ public class Example2_ReduceValueTest {
         Map<String, Task> map = example.collectToMap(getTasks());
         assertThat(map.size(), equalTo(5));
         map.forEach((k, v) -> System.out.println(String.format("%s =>> %s", k, v)));
+    }
+
+    @Test
+    public void shouldHandleDuplicatesInMap() throws Exception {
+        List<Task> tasks = getTasks();
+        tasks.add(duplicate);
+        Map<String, Task> map = example.collectToMap(tasks);
+        assertThat(map.size(), equalTo(5));
     }
 
     @Test

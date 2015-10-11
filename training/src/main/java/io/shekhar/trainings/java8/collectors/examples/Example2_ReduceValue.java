@@ -1,10 +1,7 @@
 package io.shekhar.trainings.java8.collectors.examples;
 
 import io.shekhar.trainings.java8.domain.Task;
-import io.shekhar.trainings.java8.domain.TaskType;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.*;
 
 /**
@@ -12,13 +9,11 @@ import java.util.*;
  */
 public class Example2_ReduceValue {
 
-    private Task task = new Task("Read Java 8 in action", TaskType.READING, LocalDate.of(2015, Month.SEPTEMBER, 20)).addTag("java").addTag("java8").addTag("books");
-
     public List<String> allTitles(List<Task> tasks) {
         return Collections.emptyList();
     }
 
-    public Set<String> uniqueTitle(List<Task> tasks) {
+    public Set<String> uniqueTitles(List<Task> tasks) {
         return Collections.emptySet();
     }
 

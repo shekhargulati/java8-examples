@@ -34,14 +34,13 @@ public class Solution2_ReduceValue {
     Example of maxBy
      */
     public Task taskWithLongestTitle(List<Task> tasks) {
-        return tasks.stream().collect(maxBy((t1, t2) -> t1.getTitle().length() - t2.getTitle().length())).get();
+        return tasks.stream().collect(collectingAndThen(maxBy((t1, t2) -> t1.getTitle().length() - t2.getTitle().length()), Optional::get));
     }
 
     /*
         example of summingInt
      */
     public int totalTagCount(List<Task> tasks) {
-//        return tasks.stream().mapToInt(t -> t.getTags().size()).sum();
         return tasks.stream().collect(summingInt(t -> t.getTags().size()));
     }
 
