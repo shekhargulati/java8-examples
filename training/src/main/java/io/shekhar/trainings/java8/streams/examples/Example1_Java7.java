@@ -4,10 +4,7 @@ import io.shekhar.trainings.java8.domain.Task;
 import io.shekhar.trainings.java8.domain.TaskType;
 import io.shekhar.trainings.java8.utils.DataUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static io.shekhar.trainings.java8.utils.DataUtils.getTasks;
 
@@ -25,12 +22,14 @@ public class Example1_Java7 {
                 readingTasks.add(task);
             }
         }
-
-        Collections.sort(readingTasks, (t1, t2) -> t1.getCreatedOn().compareTo(t2.getCreatedOn()));
+        Collections.sort(readingTasks, new Comparator<Task>() {
+            @Override
+            public int compare(Task t1, Task t2) {
+                return t1.getTitle().length() - t2.getTitle().length();
+            }
+        });
         for (Task readingTask : readingTasks) {
             System.out.println(readingTask.getTitle());
         }
-
-
     }
 }

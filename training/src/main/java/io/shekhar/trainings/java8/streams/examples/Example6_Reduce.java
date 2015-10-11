@@ -35,15 +35,6 @@ public class Example6_Reduce {
         // max of numbers
         System.out.println(range(1, 100).reduce(Integer::max).getAsInt());
 
-        //find the longest word along with its length
-        SimpleEntry<String, Integer> max = lines().flatMap(line -> Arrays.stream(line.trim().split("\\s")))
-                .map(word -> word.replaceAll("[^a-zA-Z]", "").toLowerCase().trim())
-                .filter(word -> word.length() > 0)
-                .map(word -> new SimpleEntry<>(word, word.length()))
-                .max((w1, w2) -> w1.getValue() - w2.getValue()).get();
-
-        System.out.println(max);
-
         // Map Reduce word count example
         Map<String, Integer> wordCount = lines().flatMap(line -> Arrays.stream(line.trim().split("\\s")))
                 .map(word -> word.replaceAll("[^a-zA-Z]", "").toLowerCase().trim())
@@ -57,7 +48,14 @@ public class Example6_Reduce {
 
         wordCount.forEach((k, v) -> System.out.println(String.format("%s ==>> %d", k, v)));
 
+        //find the longest word along with its length
+        SimpleEntry<String, Integer> max = lines().flatMap(line -> Arrays.stream(line.trim().split("\\s")))
+                .map(word -> word.replaceAll("[^a-zA-Z]", "").toLowerCase().trim())
+                .filter(word -> word.length() > 0)
+                .map(word -> new SimpleEntry<>(word, word.length()))
+                .max((w1, w2) -> w1.getValue() - w2.getValue()).get();
 
+        System.out.println(max);
     }
 
 }
