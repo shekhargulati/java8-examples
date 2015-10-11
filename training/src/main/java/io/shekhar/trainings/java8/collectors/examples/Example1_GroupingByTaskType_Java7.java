@@ -17,9 +17,7 @@ public class Example1_GroupingByTaskType_Java7 {
 
     public static void main(String[] args) {
         List<Task> tasks = getTasks();
-
         Map<TaskType, List<Task>> allTasksByType = new HashMap<>();
-
         for (Task task : tasks) {
             List<Task> existingTasksByType = allTasksByType.get(task.getType());
             if (existingTasksByType == null) {
@@ -30,8 +28,9 @@ public class Example1_GroupingByTaskType_Java7 {
                 existingTasksByType.add(task);
             }
         }
-
-        allTasksByType.forEach((k, v) -> System.out.println(String.format("%s =>> %s", k, v)));
+        for (Map.Entry<TaskType, List<Task>> entry : allTasksByType.entrySet()) {
+            System.out.println(String.format("%s =>> %s", entry.getKey(), entry.getValue()));
+        }
     }
 
 

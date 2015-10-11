@@ -1,15 +1,13 @@
 package io.shekhar.trainings.java8.collectors.examples;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
+import static io.shekhar.trainings.java8.utils.DataUtils.lines;
 import static java.util.stream.Collectors.*;
 
 /**
@@ -18,9 +16,7 @@ import static java.util.stream.Collectors.*;
 public class WordCountExample {
 
     public static void main(String[] args) throws IOException {
-        Path path = Paths.get("src/main/resources/book.txt");
-        Map<String, Long> wordCount = Files.lines(path)
-                .parallel()
+        Map<String, Long> wordCount = lines()
                 .flatMap(line -> Arrays.stream(line.trim().split("\\s")))
                 .map(word -> word.replaceAll("[^a-zA-Z]", "").toLowerCase().trim())
                 .filter(word -> word.length() > 0)
