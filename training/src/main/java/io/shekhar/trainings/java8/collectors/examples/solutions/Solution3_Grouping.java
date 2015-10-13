@@ -3,6 +3,7 @@ package io.shekhar.trainings.java8.collectors.examples.solutions;
 import io.shekhar.trainings.java8.domain.Task;
 import io.shekhar.trainings.java8.domain.TaskType;
 
+import java.time.LocalDate;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Comparator;
 import java.util.List;
@@ -32,10 +33,9 @@ public class Solution3_Grouping {
         return tasksByType;
     }
 
-
-//    public Map<TaskType, Map<LocalDate, List<String>>> groupByTypeAndCreationDate(List<Task> tasks) {
-//        return tasks.stream().collect(groupingBy(Task::getType, groupingBy(Task::getCreatedOn, mapping(Task::getTitle))));
-//    }
+    public Map<TaskType, Map<LocalDate, List<String>>> groupByTypeAndCreationDate(List<Task> tasks) {
+        return tasks.stream().collect(groupingBy(Task::getType, groupingBy(Task::getCreatedOn, mapping(Task::getTitle, toList()))));
+    }
 
     public Map<TaskType, Optional<Task>> groupTaskTypeWithTaskWithLongestLength(List<Task> tasks) {
         return tasks.stream().collect(groupingBy(Task::getType, maxBy((t1, t2) -> t1.getTitle().length() - t2.getTitle().length())));

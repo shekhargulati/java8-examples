@@ -4,6 +4,8 @@ import io.shekhar.trainings.java8.domain.Task;
 import io.shekhar.trainings.java8.domain.TaskType;
 import org.junit.Test;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -44,7 +46,6 @@ public class Example3_GroupingTest {
         assertThat(tasksByTag.get("java8"), hasSize(2));
     }
 
-/*
     @Test
     public void groupTaskByTypeAndCreationDate() throws Exception {
         List<Task> tasks = getTasks();
@@ -54,7 +55,6 @@ public class Example3_GroupingTest {
         assertThat(taskMap, hasEntry(equalTo(TaskType.BLOGGING), hasKey(LocalDate.of(2015, Month.SEPTEMBER, 21))));
         assertThat(taskMap, hasEntry(equalTo(TaskType.READING), hasKey(LocalDate.of(2015, Month.SEPTEMBER, 20))));
     }
-*/
 
     @Test
     public void groupTaskTypeWithTaskWithLongestLength() throws Exception {
