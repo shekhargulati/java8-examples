@@ -1,6 +1,7 @@
 package io.shekhar.java8.programs.sliding;
 
-import java.util.Arrays;
+import java.util.AbstractMap.SimpleEntry;
+import java.util.stream.IntStream;
 
 /**
  * Given a String "abcdef" the program should print
@@ -15,8 +16,9 @@ public class Sliding {
 
     public static void main(String[] args) {
         final String input = "abcdef";
-        Arrays.stream(input.split(""))
-                .map(ch -> input.substring(0, input.indexOf(ch) + 1))
+        IntStream.range(0, input.length())
+                .mapToObj(index -> new SimpleEntry<>(String.valueOf(input.charAt(index)), index))
+                .map(entry -> input.substring(0, entry.getValue() + 1))
                 .forEach(System.out::println);
     }
 }
