@@ -15,9 +15,8 @@ public class Sliding {
 
     public static void main(String[] args) {
         final String input = "abcdef";
-        final StringBuilder sb = new StringBuilder();
         Arrays.stream(input.split(""))
-                .map(ch -> sb.append(ch).toString())
+                .map(ch -> input.substring(0, input.indexOf(ch) + 1))
                 .forEach(System.out::println);
     }
 }
