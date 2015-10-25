@@ -2,6 +2,7 @@ package io.shekhar.trainings.java8.date_time.examples;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 
 /**
@@ -12,7 +13,7 @@ public class Example4_TemporalAdjuster {
         LocalDate today = LocalDate.now();
         System.out.println(today.with(TemporalAdjusters.firstDayOfNextMonth()));
 
-        LocalDate nextWorkingDay = today.with(TemporalAdjusters.ofDateAdjuster(localDate -> {
+        TemporalAdjuster nextWorkingDayAdjuster = TemporalAdjusters.ofDateAdjuster(localDate -> {
             DayOfWeek dayOfWeek = localDate.getDayOfWeek();
             if (dayOfWeek == DayOfWeek.FRIDAY) {
                 return localDate.plusDays(3);
@@ -20,7 +21,9 @@ public class Example4_TemporalAdjuster {
                 return localDate.plusDays(2);
             }
             return localDate.plusDays(1);
-        }));
+        });
+
+        LocalDate nextWorkingDay = today.with(nextWorkingDayAdjuster);
 
         System.out.println(nextWorkingDay);
     }

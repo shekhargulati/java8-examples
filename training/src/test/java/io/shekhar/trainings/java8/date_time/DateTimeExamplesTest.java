@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -92,5 +93,17 @@ public class DateTimeExamplesTest {
         final String input = "15 Oct 1931 01:15 AM";
         LocalDateTime dateOfBirthAndTime = kalam.parseDateOfBirthAndTime(input);
         assertThat(dateOfBirthAndTime.toString(), is(equalTo("1931-10-15T01:15")));
+    }
+
+    @Test
+    public void temporalAdjustersPlayground() throws Exception {
+        LocalDate date = LocalDate.of(2015, Month.OCTOBER, 25);
+        System.out.println(date);// This will print 2015-10-25
+        LocalDate firstDayOfMonth = date.with(TemporalAdjusters.firstDayOfMonth());
+        System.out.println(firstDayOfMonth); // This will print 2015-10-01
+        LocalDate firstDayOfNextMonth = date.with(TemporalAdjusters.firstDayOfNextMonth());
+        System.out.println(firstDayOfNextMonth);// This will print 2015-11-01
+        LocalDate lastFridayOfMonth = date.with(TemporalAdjusters.lastInMonth(DayOfWeek.FRIDAY));
+        System.out.println(lastFridayOfMonth); // This will print 2015-10-30
     }
 }
