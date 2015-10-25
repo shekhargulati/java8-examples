@@ -1,6 +1,7 @@
 package io.shekhar.trainings.java8.date_time;
 
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -46,4 +47,12 @@ public class AbdulKalam {
         return Period.between(dateOfBirth(), deathDate);
     }
 
+    public String formatDateOfBirth(final String pattern) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        return dateOfBirth().format(formatter);
+    }
+
+    public LocalDateTime parseDateOfBirthAndTime(String input) {
+        return LocalDateTime.parse(input, DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a"));
+    }
 }

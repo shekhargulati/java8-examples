@@ -3,6 +3,7 @@ package io.shekhar.trainings.java8.date_time;
 import org.junit.Test;
 
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -69,5 +70,27 @@ public class DateTimeExamplesTest {
         assertThat(kalamLifePeriod.getYears(), is(equalTo(83)));
         assertThat(kalamLifePeriod.getMonths(), is(equalTo(9)));
         assertThat(kalamLifePeriod.getDays(), is(equalTo(12)));
+    }
+
+    @Test
+    public void kalamDateOfBirthFormattedInIndianDateFormat() throws Exception {
+        final String indianDateFormat = "dd-MM-YYYY";
+        String dateOfBirth = kalam.formatDateOfBirth(indianDateFormat);
+        assertThat(dateOfBirth, is(equalTo("15-10-1931")));
+    }
+
+    @Test
+    public void kalamDateOfBirthInDifferentDateFormats() throws Exception {
+        LocalDate kalamDateOfBirth = LocalDate.of(1931, Month.OCTOBER, 15);
+        assertThat(kalamDateOfBirth.format(DateTimeFormatter.BASIC_ISO_DATE), is(equalTo("19311015")));
+        assertThat(kalamDateOfBirth.format(DateTimeFormatter.ISO_LOCAL_DATE), is(equalTo("1931-10-15")));
+        assertThat(kalamDateOfBirth.format(DateTimeFormatter.ISO_ORDINAL_DATE), is(equalTo("1931-288")));
+    }
+
+    @Test
+    public void shouldParseKalamDateOfBirthAndTimeToLocalDateTime() throws Exception {
+        final String input = "15 Oct 1931 01:15 AM";
+        LocalDateTime dateOfBirthAndTime = kalam.parseDateOfBirthAndTime(input);
+        assertThat(dateOfBirthAndTime.toString(), is(equalTo("1931-10-15T01:15")));
     }
 }
