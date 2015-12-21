@@ -1,7 +1,7 @@
 package io.shekhar.trainings.java8.sec01;
 
 
-class BasicCalculator implements Calculator {
+public class BasicCalculator implements Calculator {
 
     @Override
     public int add(int first, int second) {
